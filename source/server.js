@@ -1,17 +1,35 @@
 import http from 'http'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
+import { StaticRouter } from 'react-router'
+
+import Pages from './pages/containers/Page.jsx'
 
 function requestHandler(request, response) {
-	const html = renderToString(
-		// como va sin props le pasamos null
-		React.DOM.h1(null, 'hola')
-	)
+	const context = {}
 
-	// escribir respuesta
+	const html = renderToString(
+		<StaticRouter location={request.url} context={context}>
+			<Pages />
+		</StaticRouter>
+	)
+		{/* como va sin props le pasamos null	 React.DOM.h1(null, 'hola') */}
+
+	response.setHeader('Content-Type', 'text/html')
+
+	if (context.url) {
+		response.writeHead(301, {
+			Location: context.url,
+		});
+		response.end();
+	}
+
+	{/*// escribir respuesta*/}
 	response.write(html)
-	// terminar la respuesta
+	{/*// terminar la respuesta*/ }
 	response.end()
+
+
 }
 
 const server = http.createServer(requestHandler)
