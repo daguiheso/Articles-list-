@@ -5,7 +5,8 @@ import {
 } from 'react-router-dom'
 
 import Home from './Home.jsx'
-import About from './About.jsx'
+import Post from './Post.jsx'
+import Profile from './Profile.jsx'
 import Error404 from './Error404.jsx'
 
 
@@ -20,8 +21,13 @@ function Pages() {
 				/>
 				<Route
 					exact
-					path="/about"
-					component={About}
+					path="/post/:id"
+					component={Post}
+				/>
+				<Route
+					exact
+					path="/user/:id"
+					component={Profile}
 				/>
 				<Route component={Error404} />
 			</Switch>
