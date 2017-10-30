@@ -10599,7 +10599,6 @@ function requestHandler(request, response) {
 		{ location: request.url, context: context },
 		_react2.default.createElement(_Page2.default, null)
 	));
-	{/* como va sin props le pasamos null	 React.DOM.h1(null, 'hola') */}
 
 	response.setHeader('Content-Type', 'text/html');
 

@@ -14,8 +14,7 @@ function requestHandler(request, response) {
 			<Pages />
 		</StaticRouter>
 	)
-		{/* como va sin props le pasamos null	 React.DOM.h1(null, 'hola') */}
-
+	
 	response.setHeader('Content-Type', 'text/html')
 
 	if (context.url) {
